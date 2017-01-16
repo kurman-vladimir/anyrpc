@@ -40,7 +40,7 @@ option(BUILD_WITH_WCHAR "Build with wide character interface for Value." ON)
 
 option(BUILD_PROTOCOL_JSON "Build with Json protocol included." ON)
 option(BUILD_PROTOCOL_XML "Build with Xml procotol included." ON)
-option(BUILD_PROTOCOL_MESSAGEPACK "Build with MessgePack protocol included." ON)
+option(BUILD_PROTOCOL_MESSAGEPACK "Build iwth MessgePack protocol included." ON)
 
 set(ANYRPC_ASSERT "throw" CACHE STRING "action to take on failed assertion")
 set_property(CACHE ANYRPC_ASSERT PROPERTY STRINGS assert throw no_action)
@@ -109,10 +109,10 @@ endif ()
 
 if (BUILD_WITH_LOG4CPLUS)
     find_package( Log4cplus )
-    if (NOT LOG4CPLUS_FOUND)
-        # the find_package call for Log4cplus doesn't generate an error even if marked as required
-        message( FATAL_ERROR "LOG4CPLUS library required if BUILD_WITH_LOG4CPLUS on" )
-    endif ()
+endif ()
+
+if (BUILD_TESTS)
+    find_package( GTest )
 endif ()
 
 add_subdirectory(src)
@@ -122,7 +122,6 @@ if (BUILD_EXAMPLES)
 endif()
 
 if (BUILD_TESTS)
-    find_package( GTest REQUIRED )
     add_subdirectory(test)
 endif()
 

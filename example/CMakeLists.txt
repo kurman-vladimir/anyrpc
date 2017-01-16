@@ -8,6 +8,10 @@ if (ANYRPC_LIB_BUILD_SHARED)
     add_definitions( -DANYRPC_DLL )
 endif ()
 
+if (BUILD_PROTOCOL_MESSAGEPACK)
+    find_package( Msgpack )
+endif ()
+
 # The set of source files for the test application, without the .cpp
 set(EXAMPLE_SOURCES
     exampleServer
@@ -21,24 +25,23 @@ endif ()
 if (BUILD_PROTOCOL_XML)
     set(EXAMPLE_SOURCES ${EXAMPLE_SOURCES} exampleXml)
 endif ()
-	
+
 if (BUILD_PROTOCOL_MESSAGEPACK)
     set(EXAMPLE_SOURCES ${EXAMPLE_SOURCES} exampleMessagePack)
-    
-    # The message pack examples can be checked using the external library if available
-    find_package( Msgpack )
-    if (MSGPACK_FOUND)
-        include_directories(${MSGPACK_INCLUDE_DIRS})
-        add_definitions( -DBUILD_WITH_MSGPACK_LIBRARY )
-    else ()
-    	message( STATUS "The external Msgpack library provides checking of results but is not required" )
-    endif ()
 endif ()
-    
+
 # Add the necessary external library references
 if (BUILD_WITH_LOG4CPLUS)
     include_directories(${LOG4CPLUS_INCLUDE_DIRS})
     add_definitions( -DBUILD_WITH_LOG4CPLUS )
+else ()
+    set( LOG4CPLUS_LIBRARIES "" )
+endif ()
+if (MSGPACK_FOUND)
+    include_directories(${MSGPACK_INCLUDE_DIRS})
+    add_definitions( -DBUILD_WITH_MSGPACK_LIBRARY )
+else ()
+    set( MSGPACK_LIBRARIES "" )
 endif ()
 
 # loop through the source files and build each program

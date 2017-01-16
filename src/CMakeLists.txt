@@ -18,22 +18,22 @@ endif ()
 # Get all of the header and source files in the appropriate directories
 file(GLOB ANYRPC_SOURCES *.cpp)
 file(GLOB ANYRPC_INTERNAL_SOURCES internal/*.cpp)
-file(GLOB ANYRPC_HEADERS ${CMAKE_SOURCE_DIR}/include/*.h)
-file(GLOB ANYRPC_INTERNAL_HEADERS ${CMAKE_SOURCE_DIR}/include/internal/*.h)
+file(GLOB ANYRPC_HEADERS ${CMAKE_SOURCE_DIR}/include/anyrpc/*.h)
+file(GLOB ANYRPC_INTERNAL_HEADERS ${CMAKE_SOURCE_DIR}/include/anyrpc/internal/*.h)
 
 if (BUILD_PROTOCOL_JSON)
     file(GLOB ANYRPC_JSON_SOURCES json/*.cpp)
-    file(GLOB ANYRPC_JSON_HEADERS ${CMAKE_SOURCE_DIR}/include/json/*.h)
+    file(GLOB ANYRPC_JSON_HEADERS ${CMAKE_SOURCE_DIR}/include/anyrpc/json/*.h)
 endif ()
 
 if (BUILD_PROTOCOL_XML)
     file(GLOB ANYRPC_XML_SOURCES xml/*.cpp)
-    file(GLOB ANYRPC_XML_HEADERS ${CMAKE_SOURCE_DIR}/include/xml/*.h)
+    file(GLOB ANYRPC_XML_HEADERS ${CMAKE_SOURCE_DIR}/include/anyrpc/xml/*.h)
 endif ()
 
 if (BUILD_PROTOCOL_MESSAGEPACK)
     file(GLOB ANYRPC_MESSAGEPACK_SOURCES messagepack/*.cpp)
-    file(GLOB ANYRPC_MESSAGEPACK_HEADERS ${CMAKE_SOURCE_DIR}/include/messagepack/*.h)
+    file(GLOB ANYRPC_MESSAGEPACK_HEADERS ${CMAKE_SOURCE_DIR}/include/anyrpc/messagepack/*.h)
 endif ()
 
 set(ANYRPC_SOURCES ${ANYRPC_SOURCES} ${ANYRPC_INTERNAL_SOURCES} 

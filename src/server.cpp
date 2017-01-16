@@ -34,15 +34,13 @@
 
 #if defined(ANYRPC_INCLUDE_JSON)
 # include "anyrpc/json/jsonserver.h"
-#endif // defined(ANYRPC_INCLUDE_JSON)
-
+#endif
 #if defined(ANYRPC_INCLUDE_XML)
 # include "anyrpc/xml/xmlserver.h"
-#endif // defined(ANYRPC_INCLUDE_XML)
-
+#endif
 #if defined(ANYRPC_INCLUDE_MESSAGEPACK)
 # include "anyrpc/messagepack/messagepackserver.h"
-#endif // defined(ANYRPC_INCLUDE_MESSAGEPACK)
+#endif
 
 #ifndef WIN32
 # include <unistd.h>   // for close()
